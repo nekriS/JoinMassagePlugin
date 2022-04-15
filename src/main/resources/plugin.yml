@@ -2,3 +2,9 @@ name: JoinMessagePlugin
 version: 1.0.0
 api-version: 1.17
 main: org.JMP.plugin.Main
+commands:
+  joinmessageplugin:
+    description: info commands
+    usage: /<command> info
+    aliases:
+      - jmp
