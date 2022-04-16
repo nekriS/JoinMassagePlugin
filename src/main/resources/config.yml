@@ -1,0 +1,10 @@
+message:
+  translation:
+    prefix: "§e[JoinMessagePlugin] "
+    noPermission: "You don't have permission!"
+    notFound: "Command not found"
+    configReload: "Config reloaded!"
+  text:
+    - "Добро пожаловать на сервер"
+    - "Спасибо!"
+    - "%player%"
