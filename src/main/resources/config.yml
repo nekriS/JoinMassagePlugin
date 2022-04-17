@@ -46,10 +46,10 @@ message:
 text:
   owner:
     - "§e◆ Welcome, §f{player}§e!"
-    - "§e◆ It is welcome message for Owners!"
-  vips:
+    - "§e◆ It is welcome message for Owner!"
+  vip:
     - "§e◆ Welcome, §f{player}§e!"
-    - "§e◆ It is welcome message for Vips!"
+    - "§e◆ It is welcome message for Vip!"
   default:
     - "§e◆ Welcome, §f{player}§e!"
     - "§e◆ You have entered the server §f{nameserver}§e!"

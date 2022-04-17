@@ -26,7 +26,6 @@ public class EventListener implements Listener {
             path = "text";
         }
 
-
         List<String> welcome_text_line = Main.getInstance().getConfig().getStringList(path);
 
         for (String s : welcome_text_line) {
