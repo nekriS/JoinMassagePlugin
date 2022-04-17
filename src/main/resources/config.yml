@@ -40,4 +40,4 @@ text:
   - "§e◆ You have entered the server §f{nameserver}§e!"
   - "§e◆ Time in this world: §f{worldtime}§e."
   - "§e◆ Players online: §f{online}§e."
-  - "§e◆ Date first join: §f%player_first_join_date%§e."
+  - "§e◆ Allow flight mode: §f%player_allow_flight%§e." #Use: /papi ecloud download Player
