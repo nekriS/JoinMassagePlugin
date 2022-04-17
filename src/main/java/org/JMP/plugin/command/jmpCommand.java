@@ -6,15 +6,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.util.EventListener;
 import java.util.List;
-import java.util.Objects;
+
 
 public class jmpCommand extends AbstractCommand{
 
 
-    //ChatColor.YELLOW + "[JoinMessagePlugin] " + ChatColor.RESET;
     public jmpCommand() {
         super("jmp");
     }
@@ -57,15 +54,11 @@ public class jmpCommand extends AbstractCommand{
             }
             Player player = Bukkit.getPlayer(sender.getName());
 
-            //EventListener sWM = new EventListener();
+
             sender.sendMessage(ChatColor.DARK_GRAY + "[START]");
             org.JMP.plugin.handler.EventListener.sendWelcomeMessage(player);
             sender.sendMessage(ChatColor.DARK_GRAY + "[END]");
-            //EventListener.sendWelcomeMessage(player);
-            //player.sendMessage("Null");
-
-            //Main.getInstance().reloadConfig();
-            //sender.sendMessage(prefix + ChatColor.GREEN + Main.getInstance().getConfig().getString("message.configReload"));
+            
             return;
         }
 

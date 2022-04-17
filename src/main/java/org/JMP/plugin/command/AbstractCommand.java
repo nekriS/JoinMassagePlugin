@@ -1,12 +1,10 @@
 package org.JMP.plugin.command;
 
-import com.sun.source.tree.NewArrayTree;
 import org.JMP.plugin.Main;
 import org.bukkit.command.*;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
+
 
 public abstract class AbstractCommand implements CommandExecutor, TabCompleter {
 

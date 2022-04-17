@@ -19,8 +19,6 @@ public class Main extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
 
-
-        //Metrics metrics = new Metrics(this, pluginId);
         this.loadMetrics();
 
         instance = this;
