@@ -1,8 +1,8 @@
 name: JoinMessagePlugin
-version: 1.0.4-SNAPSHOT
+version: 1.0.5-SNAPSHOT
 api-version: 1.17
 main: org.JMP.plugin.Main
-softdepend: [PlaceholderAPI]
+softdepend: [PlaceholderAPI, LuckPerms]
 commands:
   jmp:
     description: Command of plugin

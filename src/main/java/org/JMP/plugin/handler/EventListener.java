@@ -1,5 +1,6 @@
 package org.JMP.plugin.handler;
 
+
 import org.JMP.plugin.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -8,15 +9,24 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.EventHandler;
 import me.clip.placeholderapi.PlaceholderAPI;
-import java.util.List;
-import java.util.Objects;
+
+import java.util.*;
 
 public class EventListener implements Listener {
 
     String prefix = ChatColor.YELLOW + "[JoinMessagePlugin] " + ChatColor.RESET;
-    public static void sendWelcomeMessage(Player player) {
 
-        List<String> welcome_text_line = Main.getInstance().getConfig().getStringList("text");
+    public static void sendWelcomeMessage(Player player, String group) {
+
+        String path;
+
+        if (!group.equalsIgnoreCase("old-cfg")) {
+            path = "text." + group;
+        } else {
+            path = "text";
+        }
+
+        List<String> welcome_text_line = Main.getInstance().getConfig().getStringList(path);
 
         for (String s : welcome_text_line) {
 
@@ -37,12 +47,40 @@ public class EventListener implements Listener {
         }
     }
 
-    public void sendMessage(Player player) {
+    private static String getPlayerGroup(Player player, List<String> possibleGroups) {
+        for (String group : possibleGroups) {
+            if (player.hasPermission("group." + group)) {
+                return group;
+            }
+        }
+        return null;
+    }
+    public static void toCheckRole(Player player) {
+
+
+        if (Main.getInstance().getConfig().getConfigurationSection("text") != null) {
+
+            Set<String> keys = Objects.requireNonNull((Main.getInstance().getConfig().getConfigurationSection("text"))).getKeys(false);
+
+            List<String> groups = new ArrayList<>(keys);
+
+            String group = getPlayerGroup(player, groups);
+
+            if (group == null) group = "default";
+
+            sendWelcomeMessage(player, group);
+        } else {
+            sendWelcomeMessage(player, "old_cfg");
+        }
+
+    }
+
+    public void toCheckDelay(Player player) {
         long time = Math.round(20 * Main.getInstance().getConfig().getDouble("second-from-start"));
         if (time != 0) {
-            Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> sendWelcomeMessage(player), time);
+            Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> toCheckRole(player), time);
         } else {
-            sendWelcomeMessage(player);
+            toCheckRole(player);
         }
     }
 
@@ -51,10 +89,10 @@ public class EventListener implements Listener {
         Player player = event.getPlayer();
 
         if (!Main.getInstance().getConfig().getBoolean("use-permission")) {
-            sendMessage(player);
+            toCheckDelay(player);
         } else {
             if (player.hasPermission("jmp.view")) {
-                sendMessage(player);
+                toCheckDelay(player);
             } else {
                 Main.getInstance().getServer().getConsoleSender().sendMessage(prefix + "Player join, but haven't permission!");
             }

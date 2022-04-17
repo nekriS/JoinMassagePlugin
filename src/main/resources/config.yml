@@ -1,7 +1,7 @@
 
 # Please don't change this.
 # This is to check if the config is up to date.
-version-cfg: 2
+version-cfg: 3
 
 # Type name of your server.
 # This name replaces {namesever}.
@@ -44,8 +44,15 @@ message:
 #  {world-time} - world time
 #  {online} - number of online players
 text:
-  - "§e◆ Welcome, §f{player}§e!"
-  - "§e◆ You have entered the server §f{nameserver}§e!"
-  - "§e◆ Time in this world: §f{world-time}§e."
-  - "§e◆ Players online: §f{online}§e."
-  - "§e◆ Allow flight mode: §f%player_allow_flight%§e." #Use: /papi ecloud download Player
+  owner:
+    - "§e◆ Welcome, §f{player}§e!"
+    - "§e◆ It is welcome message for Owners!"
+  vips:
+    - "§e◆ Welcome, §f{player}§e!"
+    - "§e◆ It is welcome message for Vips!"
+  default:
+    - "§e◆ Welcome, §f{player}§e!"
+    - "§e◆ You have entered the server §f{nameserver}§e!"
+    - "§e◆ Time in this world: §f{world-time}§e."
+    - "§e◆ Players online: §f{online}§e."
+    - "§e◆ Allow flight mode: §f%player_allow_flight%§e." #Use: /papi ecloud download Player
