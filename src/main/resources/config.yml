@@ -13,7 +13,7 @@ nameserver: "A Minecraft Server"
 # second-from-start: 2.5 #2.5 seconds
 # If you set it to 0 then the plugin will have the HIGHEST priority.
 # second-from-start: 0
-# Values ​​less than 0.05 have no meaning and are rounded down to 0.
+# Values less than 0.05 have no meaning and are rounded down to 0.
 second-from-start: 1
 
 # Language lines.

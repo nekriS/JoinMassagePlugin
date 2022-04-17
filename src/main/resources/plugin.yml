@@ -1,5 +1,5 @@
 name: JoinMessagePlugin
-version: 1.0.2-SNAPSHOT
+version: 1.0.3-SNAPSHOT
 api-version: 1.17
 main: org.JMP.plugin.Main
 softdepend: [PlaceholderAPI]
