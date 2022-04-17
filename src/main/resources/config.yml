@@ -1,10 +1,41 @@
+
+# Please don't change this.
+# This is to check if the config is up to date.
+version-cfg: 1
+
+# Type name of your server.
+# This name replaces {namesever}.
+nameserver: "A Minecraft Server"
+
+# Delay time before displaying a message.
+# Can be useful when setting up alignment with other plugins.
+# In seconds. Fractional numbers are available, for example:
+# second-from-start: 2.5 #2.5 seconds
+# If you set it to 0 then the plugin will have the HIGHEST priority.
+# second-from-start: 0
+# Values less than 0.05 have no meaning and are rounded down to 0.
+second-from-start: 0
+
+# Language lines.
+# Here you can translate the plugin
+#  strings into your language.
 message:
-  translation:
-    prefix: "§e[JoinMessagePlugin] "
-    noPermission: "You don't have permission!"
-    notFound: "Command not found"
-    configReload: "Config reloaded!"
-  text:
-    - "Добро пожаловать на сервер"
-    - "Спасибо!"
-    - "%player%"
+  prefix: "§e[JoinMessagePlugin] "
+  noPermission: "You don't have permission!"
+  notFound: "Command not found"
+  configReload: "Config is reloaded!"
+
+#Text join player.
+# Here ypu can change text for join player
+#  in your server.
+# Available placeholders:
+#  {player} - player nickname
+#  {nameserver} - server name
+#  {worldname} - world name
+#  {worldtime} - world time
+#  {online} - number of online players
+text:
+  - "§e◆ Welcome, §f{player}§e!"
+  - "§e◆ You have entered the server §f{nameserver}§e!"
+  - "§e◆ Time in this world: §f{worldtime}§e."
+  - "§e◆ Players online: §f{online}§e."

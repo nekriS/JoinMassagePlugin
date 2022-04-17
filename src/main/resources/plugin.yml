@@ -1,10 +1,10 @@
 name: JoinMessagePlugin
-version: 1.0.1
+version: 1.0.2-SNAPSHOT
 api-version: 1.17
 main: org.JMP.plugin.Main
 commands:
   jmp:
-    description: info commands
-    usage: /<command> info
+    description: Command of plugin
+    usage: /jmp <command>
     aliases:
       - joinmessageplugin

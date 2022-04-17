@@ -22,6 +22,8 @@ public class Main extends JavaPlugin implements Listener {
 
         saveDefaultConfig();
 
+        int loadVersion = getConfig().getInt("version-cfg");
+
         new jmpCommand();
         getServer().getPluginManager().registerEvents(new EventListener(), this);
         getServer().getConsoleSender().sendMessage(prefix + "Plugin is " + ChatColor.GREEN + "enabled" + ChatColor.RESET + "!");
