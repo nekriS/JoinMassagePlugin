@@ -1,7 +1,7 @@
 
 # Please don't change this.
 # This is to check if the config is up to date.
-version-cfg: 1
+version-cfg: 2
 
 # Type name of your server.
 # This name replaces {namesever}.
@@ -16,6 +16,14 @@ nameserver: "A Minecraft Server"
 # Values less than 0.05 have no meaning and are rounded down to 0.
 second-from-start: 1
 
+# If you need to restrict some groups
+#  from displaying a message, use this:
+# If:
+# use-permission: true
+# The message will be displayed for
+#  players with permissions jmp.view
+use-permission: false
+
 # Language lines.
 # Here you can translate the plugin
 #  strings into your language.
@@ -25,19 +33,19 @@ message:
   notFound: "Command not found"
   configReload: "Config is reloaded!"
 
-#Text join player.
+# Text when the player join.
 # Here you can change text for join player
 #  in your server.
 # Placeholders available from PlaceholderAPI.
 # Available placeholders (working without PAPI):
 #  {player} - player nickname
 #  {nameserver} - server name
-#  {worldname} - world name
-#  {worldtime} - world time
+#  {world-name} - world name
+#  {world-time} - world time
 #  {online} - number of online players
 text:
   - "§e◆ Welcome, §f{player}§e!"
   - "§e◆ You have entered the server §f{nameserver}§e!"
-  - "§e◆ Time in this world: §f{worldtime}§e."
+  - "§e◆ Time in this world: §f{world-time}§e."
   - "§e◆ Players online: §f{online}§e."
   - "§e◆ Allow flight mode: §f%player_allow_flight%§e." #Use: /papi ecloud download Player

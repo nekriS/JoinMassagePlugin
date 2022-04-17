@@ -2,6 +2,7 @@ package org.JMP.plugin.handler;
 
 import org.JMP.plugin.Main;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -12,15 +13,10 @@ import java.util.Objects;
 
 public class EventListener implements Listener {
 
-
+    String prefix = ChatColor.YELLOW + "[JoinMessagePlugin] " + ChatColor.RESET;
     public static void sendWelcomeMessage(Player player) {
 
         List<String> welcome_text_line = Main.getInstance().getConfig().getStringList("text");
-        //getString("text");
-        //welcome_text_line = welcome_text_line.substring(1, welcome_text_line.length()-1);
-
-
-        //String[] welcome_text_array = welcome_text_line.split(", ");
 
         for (String s : welcome_text_line) {
 
@@ -30,17 +26,10 @@ public class EventListener implements Listener {
             String world_name_of_player = player.getWorld().getName();
             long time_world = player.getWorld().getTime();
 
-
-
-            //Long time = Bukkit.getServer().getWorld(wrld).getTime();
-            //String world_player = player.getServer().getWorld(player.getUniqueId()).getName();
-            //String world_time = Long.toString(Objects.requireNonNull(player.getServer().getWorld(world_player)).getTime());
-
-
             s = s.replace("{online}", Integer.toString(players_online));
             s = s.replace("{player}", player_name);
-            s = s.replace("{worldname}", world_name_of_player);
-            s = s.replace("{worldtime}", Long.toString(time_world));
+            s = s.replace("{world-name}", world_name_of_player);
+            s = s.replace("{world-time}", Long.toString(time_world));
             s = s.replace("{nameserver}", name_server != null ? name_server : "Null");
 
             s = PlaceholderAPI.setPlaceholders(player.getPlayer(), s);
@@ -48,18 +37,27 @@ public class EventListener implements Listener {
         }
     }
 
-    @EventHandler
-    public void handleJoinServer(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
-
+    public void sendMessage(Player player) {
         long time = Math.round(20 * Main.getInstance().getConfig().getDouble("second-from-start"));
         if (time != 0) {
             Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> sendWelcomeMessage(player), time);
         } else {
             sendWelcomeMessage(player);
         }
-
-
     }
 
+    @EventHandler
+    public void handleJoinServer(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+
+        if (!Main.getInstance().getConfig().getBoolean("use-permission")) {
+            sendMessage(player);
+        } else {
+            if (player.hasPermission("jmp.view")) {
+                sendMessage(player);
+            } else {
+                Main.getInstance().getServer().getConsoleSender().sendMessage(prefix + "Player join, but haven't permission!");
+            }
+        }
+    }
 }

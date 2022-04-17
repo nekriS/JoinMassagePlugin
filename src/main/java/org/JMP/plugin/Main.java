@@ -6,7 +6,7 @@ import org.JMP.plugin.handler.EventListener;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.event.Listener;
-
+import org.JMP.plugin.util.Metrics;
 
 
 
@@ -18,6 +18,11 @@ public class Main extends JavaPlugin implements Listener {
 
     @Override
     public void onEnable() {
+
+
+        //Metrics metrics = new Metrics(this, pluginId);
+        this.loadMetrics();
+
         instance = this;
 
         saveDefaultConfig();
@@ -37,4 +42,9 @@ public class Main extends JavaPlugin implements Listener {
     }
 
     public static Main getInstance() { return instance; }
+
+    private void loadMetrics() {
+        int pluginId = 14964;
+        new Metrics(this, pluginId);
+    }
 }
