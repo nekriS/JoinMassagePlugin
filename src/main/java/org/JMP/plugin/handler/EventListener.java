@@ -6,7 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.EventHandler;
-
+import me.clip.placeholderapi.PlaceholderAPI;
 import java.util.List;
 import java.util.Objects;
 
@@ -43,6 +43,7 @@ public class EventListener implements Listener {
             s = s.replace("{worldtime}", Long.toString(time_world));
             s = s.replace("{nameserver}", name_server != null ? name_server : "Null");
 
+            s = PlaceholderAPI.setPlaceholders(player.getPlayer(), s);
             player.sendMessage(s);
         }
     }
