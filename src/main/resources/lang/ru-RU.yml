@@ -1,0 +1,28 @@
+
+# Файл перевода
+# Здесь вы можете перевести
+#  строчки кода на Ваш язык.
+message:
+  prefix: "&e[JoinMessagePlugin] "
+  noPermission: "У вас нет на это права!"
+  notFound: "Команда не найдена"
+  configReload: "Конфиг был перезагружен!"
+  groupNotFound: "Группа не найдена!"
+  use: "Используйте"
+  for: "Для"
+  start-separator: "НАЧАЛО"
+  end-separator: "КОНЕЦ"
+  version: "Версия"
+  author: "Автор"
+  jmp-cmd: "Команды JMP"
+
+help:
+  - "&7[Помощь] - &e[JoinMessagePlugin]#"
+  - " &7- &f/jmp&7&o - главная родительская команда#"
+  - " &7- &f/jmp info&7&o - возвращает информацию о плагине#"
+  - " &7- &f/jmp help&7&o - возвращает данную страницу#"
+  - " &7- &f/jmp message <group>&7&o - возвращает сообщение для конкретной группы#"
+  - " &7- &f/jmp reload&7&o - перезагружает конфиг и языка плагина"
+
+
+version: 1 #don't change this

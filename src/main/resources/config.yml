@@ -1,7 +1,14 @@
 
 # Please don't change this.
 # This is to check if the config is up to date.
-version-cfg: 3
+version-cfg: 4
+
+# For change language use this check
+# Available languages:
+# en-US - English
+# ru-RU - Russian
+# Send me your language file.
+lang: "en-US"
 
 # Type name of your server.
 # This name replaces {namesever}.
@@ -23,15 +30,6 @@ second-from-start: 1
 # The message will be displayed for
 #  players with permissions jmp.view
 use-permission: false
-
-# Language lines.
-# Here you can translate the plugin
-#  strings into your language.
-message:
-  prefix: "§e[JoinMessagePlugin] "
-  noPermission: "You don't have permission!"
-  notFound: "Command not found"
-  configReload: "Config is reloaded!"
 
 # Text when the player join.
 # Here you can change text for join player
