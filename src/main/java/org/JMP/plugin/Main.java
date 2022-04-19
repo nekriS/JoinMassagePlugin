@@ -2,6 +2,7 @@ package org.JMP.plugin;
 
 
 import org.JMP.plugin.command.jmpCommand;
+import org.JMP.plugin.handler.AuthMeListener;
 import org.JMP.plugin.handler.EventListener;
 import org.JMP.plugin.util.Metrics;
 import org.bukkit.ChatColor;
@@ -19,6 +20,8 @@ public class Main extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
 
+        boolean pl = this.getServer().getPluginManager().isPluginEnabled("AuthMe");
+
         this.loadMetrics();
 
         instance = this;
@@ -32,7 +35,14 @@ public class Main extends JavaPlugin implements Listener {
 
         new jmpCommand();
         getServer().getPluginManager().registerEvents(new EventListener(), this);
+
+        if (pl) {
+            getServer().getPluginManager().registerEvents(new AuthMeListener(), this);
+            this.getServer().getConsoleSender().sendMessage(prefix + "AuthMe has been hooked!");
+        }
+
         getServer().getConsoleSender().sendMessage(prefix + "Plugin is " + ChatColor.GREEN + "enabled" + ChatColor.RESET + "!");
+
     }
 
 
@@ -48,4 +58,10 @@ public class Main extends JavaPlugin implements Listener {
         int pluginId = 14964;
         new Metrics(this, pluginId);
     }
+
+
+
 }
+
+
+

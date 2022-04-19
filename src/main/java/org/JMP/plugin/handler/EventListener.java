@@ -1,20 +1,23 @@
 package org.JMP.plugin.handler;
 
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.JMP.plugin.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.EventHandler;
-import me.clip.placeholderapi.PlaceholderAPI;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
 
 public class EventListener implements Listener {
 
-    String prefix = ChatColor.YELLOW + "[JoinMessagePlugin] " + ChatColor.RESET;
+    static String prefix = ChatColor.YELLOW + "[JoinMessagePlugin] " + ChatColor.RESET;
 
     public static void sendWelcomeMessage(Player player, String group) {
 
@@ -42,7 +45,12 @@ public class EventListener implements Listener {
             s = s.replace("{world-time}", Long.toString(time_world));
             s = s.replace("{nameserver}", name_server != null ? name_server : "Null");
 
-            s = PlaceholderAPI.setPlaceholders(player.getPlayer(), s);
+            boolean pl = Main.getInstance().getServer().getPluginManager().isPluginEnabled("Placeholer API");
+            if (pl) {
+                s = PlaceholderAPI.setPlaceholders(player.getPlayer(), s);
+            }
+
+
             player.sendMessage(s);
         }
     }
@@ -75,7 +83,7 @@ public class EventListener implements Listener {
 
     }
 
-    public void toCheckDelay(Player player) {
+    public static void toCheckDelay(Player player) {
         long time = Math.round(20 * Main.getInstance().getConfig().getDouble("second-from-start"));
         if (time != 0) {
             Bukkit.getScheduler().scheduleSyncDelayedTask(Main.getInstance(), () -> toCheckRole(player), time);
@@ -84,9 +92,7 @@ public class EventListener implements Listener {
         }
     }
 
-    @EventHandler
-    public void handleJoinServer(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
+    public static void checkSettingPermission(Player player) {
 
         if (!Main.getInstance().getConfig().getBoolean("use-permission")) {
             toCheckDelay(player);
@@ -94,8 +100,38 @@ public class EventListener implements Listener {
             if (player.hasPermission("jmp.view")) {
                 toCheckDelay(player);
             } else {
-                Main.getInstance().getServer().getConsoleSender().sendMessage(prefix + "Player join, but haven't permission!");
+                Main.getInstance().getServer().getConsoleSender().sendMessage(prefix + "Player " + player.getDisplayName() + " join, but haven't permission!");
             }
         }
+
     }
+
+    public static void checkSettingHookedAuth(Player player, Boolean check) {
+
+        if (Main.getInstance().getConfig().getBoolean("auth-me.send-message-after-logging") == check) {
+            checkSettingPermission(player);
+        }
+
+    }
+
+
+
+
+    @EventHandler
+    public void handleJoinServer(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+
+        boolean pl = Main.getInstance().getServer().getPluginManager().isPluginEnabled("AuthMe");
+        boolean setting = Main.getInstance().getConfig().getBoolean("auth-me.send-message-after-logging");
+
+        checkSettingHookedAuth(player, false);
+        if ((!pl) && setting) {
+            Main.getInstance().getServer().getConsoleSender().sendMessage(ChatColor.YELLOW + "[WARNING] " + prefix + ChatColor.YELLOW + "Config: 'send-message-after-logging: true' but AuthMe not founded!");
+            checkSettingHookedAuth(player, true);
+        }
+
+    }
+
+
+
 }

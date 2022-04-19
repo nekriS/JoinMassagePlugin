@@ -4,7 +4,7 @@
 #  strings into your language.
 message:
   prefix: "&e[JoinMessagePlugin] "
-  noPermission: "You don't have permission!"
+  noPermission: "You don't have permission:"
   notFound: "Command not found"
   configReload: "Config is reloaded!"
   groupNotFound: "Group not found!"

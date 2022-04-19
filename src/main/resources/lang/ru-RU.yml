@@ -4,7 +4,7 @@
 #  строчки кода на Ваш язык.
 message:
   prefix: "&e[JoinMessagePlugin] "
-  noPermission: "У вас нет на это права!"
+  noPermission: "У вас нет на это права:"
   notFound: "Команда не найдена"
   configReload: "Конфиг был перезагружен!"
   groupNotFound: "Группа не найдена!"

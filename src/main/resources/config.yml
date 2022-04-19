@@ -1,7 +1,7 @@
 
 # Please don't change this.
 # This is to check if the config is up to date.
-version-cfg: 4
+version-cfg: 5
 
 # For change language use this check
 # Available languages:
@@ -30,6 +30,11 @@ second-from-start: 1
 # The message will be displayed for
 #  players with permissions jmp.view
 use-permission: false
+
+# Support AuthMe
+auth-me:
+# If "true" then message will send after logging player
+  send-message-after-logging: false
 
 # Text when the player join.
 # Here you can change text for join player

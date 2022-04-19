@@ -36,7 +36,7 @@ public class jmpCommand extends AbstractCommand{
     private void sendInfo(CommandSender sender, String prefix) {
 
         if (!sender.hasPermission("jmp.info")) {
-            sender.sendMessage(prefix + ChatColor.RED + getStringLang(getLang(), "message.noPermission"));
+            sender.sendMessage(prefix + ChatColor.RED + getStringLang(getLang(), "message.noPermission") + " jmp.info");
             return;
         }
 
@@ -52,18 +52,26 @@ public class jmpCommand extends AbstractCommand{
         String prefix = getStringLang(getLang(), "message.prefix") + ChatColor.RESET;
 
         if (args.length == 0) {
+            if (!sender.hasPermission("jmp.info")) {
+                sender.sendMessage(prefix + ChatColor.RED + getStringLang(getLang(), "message.noPermission") + " jmp.info");
+                return;
+            }
             sendInfo(sender, prefix);
             return;
         }
 
         if (args[0].equalsIgnoreCase("info")) {
+            if (!sender.hasPermission("jmp.reload")) {
+                sender.sendMessage(prefix + ChatColor.RED + getStringLang(getLang(), "message.noPermission") + " jmp.info");
+                return;
+            }
             sendInfo(sender, prefix);
             return;
         }
 
         if(args[0].equalsIgnoreCase("reload")) {
             if (!sender.hasPermission("jmp.reload")) {
-                sender.sendMessage(prefix + ChatColor.RED + getStringLang(getLang(), "message.noPermission"));
+                sender.sendMessage(prefix + ChatColor.RED + getStringLang(getLang(), "message.noPermission") + " jmp.reload");
                 return;
             }
 
@@ -74,7 +82,7 @@ public class jmpCommand extends AbstractCommand{
 
         if(args[0].equalsIgnoreCase("message")) {
             if (!sender.hasPermission("jmp.message")) {
-                sender.sendMessage(prefix + ChatColor.RED + getStringLang(getLang(), "message.noPermission"));
+                sender.sendMessage(prefix + ChatColor.RED + getStringLang(getLang(), "message.noPermission") + " jmp.message");
                 return;
             }
 
@@ -97,6 +105,10 @@ public class jmpCommand extends AbstractCommand{
         }
 
         if (args[0].equalsIgnoreCase("help")) {
+            if (!sender.hasPermission("jmp.help")) {
+                sender.sendMessage(prefix + ChatColor.RED + getStringLang(getLang(), "message.noPermission") + " jmp.help");
+                return;
+            }
 
             Player player = Bukkit.getPlayer(sender.getName());
 
