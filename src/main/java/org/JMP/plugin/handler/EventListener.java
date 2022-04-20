@@ -45,7 +45,7 @@ public class EventListener implements Listener {
             s = s.replace("{world-time}", Long.toString(time_world));
             s = s.replace("{nameserver}", name_server != null ? name_server : "Null");
 
-            boolean pl = Main.getInstance().getServer().getPluginManager().isPluginEnabled("Placeholer API");
+            boolean pl = Main.getInstance().getServer().getPluginManager().isPluginEnabled("PlaceholderAPI");
             if (pl) {
                 s = PlaceholderAPI.setPlaceholders(player.getPlayer(), s);
             }
@@ -100,7 +100,7 @@ public class EventListener implements Listener {
             if (player.hasPermission("jmp.view")) {
                 toCheckDelay(player);
             } else {
-                Main.getInstance().getServer().getConsoleSender().sendMessage(prefix + "Player " + player.getDisplayName() + " join, but haven't permission!");
+                Main.getInstance().getServer().getConsoleSender().sendMessage(prefix + "Player " + player.getDisplayName() + " join but haven't permission!");
             }
         }
 
