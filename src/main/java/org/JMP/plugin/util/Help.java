@@ -8,7 +8,7 @@ public class Help {
 
     public static void sendHelp(Player player, String lang) {
 
-        String helpLine = getStringLang(lang, "help");
+        String helpLine = getStringLang(lang, "help", "Help not found!");
         String[] help = helpLine.substring(1, helpLine.length()-1).split("#, ");
         for (String s : help) {
             player.sendMessage(s);

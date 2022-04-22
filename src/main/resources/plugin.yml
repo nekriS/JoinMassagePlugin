@@ -1,5 +1,5 @@
 name: JoinMessagePlugin
-version: 1.0.6-SNAPSHOT
+version: 1.1.0-SNAPSHOT
 api-version: '1.14'
 main: org.JMP.plugin.Main
 authors: [nekriS]

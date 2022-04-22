@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
-import static org.JMP.plugin.handler.EventListener.checkSettingHookedAuth;
+import static org.JMP.plugin.handler.Methods.checkSettingHookedAuth;
 
 public class AuthMeListener implements Listener {
 

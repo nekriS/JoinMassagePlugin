@@ -7,7 +7,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 public class Lang {
 
-    public static String getStringLang(String language, String path) {
+    public static String getStringLang(String language, String path, String def) {
         File lang = new File(Main.getInstance().getDataFolder(),"/lang/" + language + ".yml");
 
         if ( Main.getInstance().getResource("lang/" + language + ".yml") != null ) {
@@ -24,7 +24,7 @@ public class Lang {
         }
         FileConfiguration messagesConfig = YamlConfiguration.loadConfiguration(lang);
 
-        return messagesConfig.getString(path).replace('&','§');
+        return messagesConfig.getString(path, def).replace('&','§');
     }
 
 }

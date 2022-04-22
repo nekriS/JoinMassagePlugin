@@ -30,8 +30,8 @@ public class Main extends JavaPlugin implements Listener {
 
         int loadVersion = getConfig().getInt("version-cfg");
 
-        getStringLang("en-US", "version");
-        getStringLang("ru-RU", "version");
+        getStringLang("en-US", "version", "version");
+        getStringLang("ru-RU", "version", "version");
 
         new jmpCommand();
         getServer().getPluginManager().registerEvents(new EventListener(), this);
