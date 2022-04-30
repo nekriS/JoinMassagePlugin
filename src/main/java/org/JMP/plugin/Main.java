@@ -9,7 +9,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import static org.JMP.plugin.util.Lang.getStringLang;
+import static org.JMP.plugin.util.Lines.getLine;
 
 public class Main extends JavaPlugin implements Listener {
 
@@ -30,8 +30,11 @@ public class Main extends JavaPlugin implements Listener {
 
         int loadVersion = getConfig().getInt("version-cfg");
 
-        getStringLang("en-US", "version", "version");
-        getStringLang("ru-RU", "version", "version");
+        //getStringLang("en-US", "version", "version");
+        //getStringLang("ru-RU", "version", "version");
+
+        getLine("lang","en-US","version", "version");
+        getLine("lang","ru-RU","version", "version");
 
         new jmpCommand();
         getServer().getPluginManager().registerEvents(new EventListener(), this);

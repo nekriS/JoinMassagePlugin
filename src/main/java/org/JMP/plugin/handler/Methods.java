@@ -61,15 +61,10 @@ public class Methods {
     public static void toCheckRole(Player player) {
 
         if (Main.getInstance().getConfig().getConfigurationSection("text") != null) {
-
             Set<String> keys = Objects.requireNonNull((Main.getInstance().getConfig().getConfigurationSection("text"))).getKeys(false);
-
             List<String> groups = new ArrayList<>(keys);
-
             String group = getPlayerGroup(player, groups);
-
             if (group == null) group = "default";
-
             sendWelcomeMessage(player, group);
         } else {
             sendWelcomeMessage(player, "old_cfg");

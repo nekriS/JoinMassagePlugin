@@ -12,9 +12,8 @@ import java.util.Objects;
 import java.util.Set;
 
 import static org.JMP.plugin.util.Help.sendHelp;
-import static org.JMP.plugin.util.Lang.getStringLang;
-
-
+import static org.JMP.plugin.util.Settings.sendSettings;
+import static org.JMP.plugin.util.Lines.getLine;
 public class jmpCommand extends AbstractCommand{
 
     public String getLang() {
@@ -36,24 +35,24 @@ public class jmpCommand extends AbstractCommand{
     private void sendInfo(CommandSender sender, String prefix) {
 
         if (!sender.hasPermission("jmp.info")) {
-            sender.sendMessage(prefix + ChatColor.RED + getStringLang(getLang(), "message.noPermission", "You don't have permission:") + " jmp.info");
+            sender.sendMessage(prefix + ChatColor.RED + getLine("lang", getLang(), "message.noPermission", "You don't have permission:") + " jmp.info");
             return;
         }
 
         String version = Main.getInstance().getDescription().getVersion();
-        sender.sendMessage(prefix + ChatColor.GRAY + getStringLang(getLang(), "message.version", "Version") + ": " + ChatColor.WHITE + version);
-        sender.sendMessage(prefix + ChatColor.GRAY + getStringLang(getLang(), "message.author", "Author") + ": " + ChatColor.WHITE + "nekriS");
-        sender.sendMessage(prefix + ChatColor.GRAY + getStringLang(getLang(), "message.jmp-cmd", "JMP Commands") + ": " + ChatColor.WHITE + "/jmp help");
+        sender.sendMessage(prefix + ChatColor.GRAY + getLine("lang", getLang(), "message.version", "Version") + ": " + ChatColor.WHITE + version);
+        sender.sendMessage(prefix + ChatColor.GRAY + getLine("lang", getLang(), "message.author", "Author") + ": " + ChatColor.WHITE + "nekriS");
+        sender.sendMessage(prefix + ChatColor.GRAY + getLine("lang", getLang(), "message.jmp-cmd", "JMP Commands") + ": " + ChatColor.WHITE + "/jmp help");
 
     }
     @Override
     public void execute(CommandSender sender, String label, String[] args) {
 
-        String prefix = getStringLang(getLang(), "message.prefix", "&e[JoinMessagePlugin] ") + ChatColor.RESET;
+        String prefix = getLine("lang", getLang(), "message.prefix", "&e[JoinMessagePlugin] ") + ChatColor.RESET;
 
         if (args.length == 0) {
             if (!sender.hasPermission("jmp.info")) {
-                sender.sendMessage(prefix + ChatColor.RED + getStringLang(getLang(), "message.noPermission", "You don't have permission:") + " jmp.info");
+                sender.sendMessage(prefix + ChatColor.RED + getLine("lang", getLang(), "message.noPermission", "You don't have permission:") + " jmp.info");
                 return;
             }
             sendInfo(sender, prefix);
@@ -62,7 +61,7 @@ public class jmpCommand extends AbstractCommand{
 
         if (args[0].equalsIgnoreCase("info")) {
             if (!sender.hasPermission("jmp.info")) {
-                sender.sendMessage(prefix + ChatColor.RED + getStringLang(getLang(), "message.noPermission", "You don't have permission:") + " jmp.info");
+                sender.sendMessage(prefix + ChatColor.RED + getLine("lang", getLang(), "message.noPermission", "You don't have permission:") + " jmp.info");
                 return;
             }
             sendInfo(sender, prefix);
@@ -71,18 +70,18 @@ public class jmpCommand extends AbstractCommand{
 
         if(args[0].equalsIgnoreCase("reload")) {
             if (!sender.hasPermission("jmp.reload")) {
-                sender.sendMessage(prefix + ChatColor.RED + getStringLang(getLang(), "message.noPermission", "You don't have permission:") + " jmp.reload");
+                sender.sendMessage(prefix + ChatColor.RED + getLine("lang", getLang(), "message.noPermission", "You don't have permission:") + " jmp.reload");
                 return;
             }
 
             Main.getInstance().reloadConfig();
-            sender.sendMessage(prefix + ChatColor.GREEN + getStringLang(getLang(), "message.configReload", "Config is reloaded!"));
+            sender.sendMessage(prefix + ChatColor.GREEN + getLine("lang", getLang(), "message.configReload", "Config is reloaded!"));
             return;
         }
 
         if(args[0].equalsIgnoreCase("message")) {
             if (!sender.hasPermission("jmp.message")) {
-                sender.sendMessage(prefix + ChatColor.RED + getStringLang(getLang(), "message.noPermission", "You don't have permission:") + " jmp.message");
+                sender.sendMessage(prefix + ChatColor.RED + getLine("lang", getLang(), "message.noPermission", "You don't have permission:") + " jmp.message");
                 return;
             }
 
@@ -90,15 +89,15 @@ public class jmpCommand extends AbstractCommand{
 
             if (args.length == 2) {
                 if (checkAvailableGroup(args[1]) ^ (args[1].equalsIgnoreCase("old-cfg"))) {
-                    sender.sendMessage(ChatColor.DARK_GRAY + "[" + getStringLang(getLang(), "message.start-separator", "START") + "] " + getStringLang(getLang(), "message.for", "For") + ": " + args[1]);
+                    sender.sendMessage(ChatColor.DARK_GRAY + "[" + getLine("lang", getLang(), "message.start-separator", "START") + "] " + getLine("lang", getLang(), "message.for", "For") + ": " + args[1]);
                     org.JMP.plugin.handler.Methods.sendWelcomeMessage(player, args[1]);
-                    sender.sendMessage(ChatColor.DARK_GRAY + "[" + getStringLang(getLang(), "message.end-separator", "END") + "]");
+                    sender.sendMessage(ChatColor.DARK_GRAY + "[" + getLine("lang", getLang(), "message.end-separator", "END") + "]");
                 } else {
-                    sender.sendMessage(prefix + ChatColor.RED + getStringLang(getLang(), "message.groupNotFound", "Group not found!"));
+                    sender.sendMessage(prefix + ChatColor.RED + getLine("lang", getLang(), "message.groupNotFound", "Group not found!"));
                 }
 
             } else {
-                sender.sendMessage(prefix + ChatColor.RED + getStringLang(getLang(), "message.use", "Use:") + ": /jmp message <group>");
+                sender.sendMessage(prefix + ChatColor.RED + getLine("lang", getLang(), "message.use", "Use:") + ": /jmp message <group>");
             }
             return;
 
@@ -106,7 +105,7 @@ public class jmpCommand extends AbstractCommand{
 
         if (args[0].equalsIgnoreCase("help")) {
             if (!sender.hasPermission("jmp.help")) {
-                sender.sendMessage(prefix + ChatColor.RED + getStringLang(getLang(), "message.noPermission", "You don't have permission:") + " jmp.help");
+                sender.sendMessage(prefix + ChatColor.RED + getLine("lang", getLang(), "message.noPermission", "You don't have permission:") + " jmp.help");
                 return;
             }
 
@@ -117,7 +116,20 @@ public class jmpCommand extends AbstractCommand{
             return;
         }
 
-        sender.sendMessage(prefix + ChatColor.RED + getStringLang(getLang(), "message.notFound", "Command not found") + ": " + args[0]);
+        if (args[0].equalsIgnoreCase("settings")) {
+            if (!sender.hasPermission("jmp.settings")) {
+                sender.sendMessage(prefix + ChatColor.RED + getLine("lang", getLang(), "message.noPermission", "You don't have permission:") + " jmp.settings");
+                return;
+            }
+
+            Player player = Bukkit.getPlayer(sender.getName());
+
+            sendSettings(player);
+
+            return;
+        }
+
+        sender.sendMessage(prefix + ChatColor.RED + getLine("lang", getLang(), "message.notFound", "Command not found") + ": " + args[0]);
         return;
     }
 
@@ -126,7 +138,7 @@ public class jmpCommand extends AbstractCommand{
     public List<String> complete(CommandSender sender, String[] args) {
 
         if (args.length == 1) {
-            return Lists.newArrayList("reload", "info", "message", "help");
+            return Lists.newArrayList("reload", "info", "message", "help", "settings");
         }
 
         if (args.length == 2) {

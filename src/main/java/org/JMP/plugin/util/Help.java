@@ -2,19 +2,19 @@ package org.JMP.plugin.util;
 
 import org.bukkit.entity.Player;
 
-import static org.JMP.plugin.util.Lang.getStringLang;
+import java.util.List;
 
+import static org.JMP.plugin.util.Lines.getLines;
 public class Help {
 
+
+
     public static void sendHelp(Player player, String lang) {
+        List<String> help = getLines("lang", lang, "help");
 
-        String helpLine = getStringLang(lang, "help", "Help not found!");
-        String[] help = helpLine.substring(1, helpLine.length()-1).split("#, ");
         for (String s : help) {
-            player.sendMessage(s);
+            player.sendMessage(s.replace('&','§'));
         }
-
-
     }
 
 

@@ -17,11 +17,11 @@ message:
   jmp-cmd: "JMP Commands"
 
 help:
-  - "&7[Help] - &e[JoinMessagePlugin]#"
-  - " &7- &f/jmp&7&o - main parent command#"
-  - " &7- &f/jmp info&7&o - get info about version of plugin#"
-  - " &7- &f/jmp help&7&o - get this page#"
-  - " &7- &f/jmp message <group>&7&o - get message for group#"
+  - "&7[Help] - &e[JoinMessagePlugin]"
+  - " &7- &f/jmp&7&o - main parent command"
+  - " &7- &f/jmp info&7&o - get info about version of plugin"
+  - " &7- &f/jmp help&7&o - get this page"
+  - " &7- &f/jmp message <group>&7&o - get message for group"
   - " &7- &f/jmp reload&7&o - reload config and plugin language"
 
 
