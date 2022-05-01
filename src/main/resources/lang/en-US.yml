@@ -6,8 +6,10 @@ message:
   prefix: "&e[JoinMessagePlugin] "
   noPermission: "You don't have permission:"
   notFound: "Command not found"
-  configReload: "Config is reloaded!"
+  configReload: "Config reloaded!"
   groupNotFound: "Group not found!"
+  linesNotFound: "Lines not found!"
+  settings: "Settings"
   use: "Use"
   for: "For"
   start-separator: "START"
@@ -22,6 +24,7 @@ help:
   - " &7- &f/jmp info&7&o - get info about version of plugin"
   - " &7- &f/jmp help&7&o - get this page"
   - " &7- &f/jmp message <group>&7&o - get message for group"
+  - " &7- &f/jmp settings&7&o - list of settings"
   - " &7- &f/jmp reload&7&o - reload config and plugin language"
 
 

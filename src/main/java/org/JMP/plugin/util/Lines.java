@@ -7,13 +7,13 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.util.List;
+import java.util.Objects;
 
 public class Lines {
 
-    static String prefix = ChatColor.YELLOW + "[JoinMessagePlugin] " + ChatColor.RESET;
+    static String prefix = Main.getInstance().getConfig().getString("message.prefix", "&e[JoinMessagePlugin] ").replace('&','§') + ChatColor.RESET;
 
-    public static File returnFile(String type, String nameFile, String path) {
-
+    public static File returnFile(String type, String nameFile) {
         File lines = new File(Main.getInstance().getDataFolder(),"/" + type + "/" + nameFile + ".yml");
         if ( Main.getInstance().getResource(type + "/" + nameFile + ".yml") != null ) {
 
@@ -22,14 +22,13 @@ public class Lines {
                 lines = new File(Main.getInstance().getDataFolder(), "/" + type + "/" + nameFile + ".yml");
             }
         } else {
-            return returnFile(type, "en-US", path);
+            return returnFile(type, Objects.equals(type, "lang") ? "en-US" : null);
         }
         return lines; //return file with lines
     }
 
     public static String getLine(String type, String language, String path, String def) {
-
-        File lines = returnFile(type, language, path);
+        File lines = returnFile(type, language);
         FileConfiguration messagesConfig = YamlConfiguration.loadConfiguration(lines);
 
         return messagesConfig.getString(path, def).replace('&','§');
@@ -37,8 +36,7 @@ public class Lines {
 
 
     public static List<String> getLines(String type, String language, String path) {
-
-        File lines = returnFile(type, language, path);
+        File lines = returnFile(type, language);
         FileConfiguration messagesConfig = YamlConfiguration.loadConfiguration(lines);
 
         List<String> strings = messagesConfig.getStringList(path);
@@ -46,7 +44,7 @@ public class Lines {
         if (strings.size() > 0) {
             return strings;
         } else {
-            return List.of(prefix + ChatColor.RED + "Help not founded!");
+            return List.of(prefix + ChatColor.RED + Main.getInstance().getConfig().getString("message.linesNotFound", "Lines not found!"));
         }
     }
 }
